@@ -43,6 +43,11 @@ public class CandidateWords
       String word = sc.nextLine();
       System.out.print("values gyb: ");
       String vals = sc.nextLine();
+      if (vals.equals(""))
+      {
+        System.out.printf("solved in %d rounds!\n");
+        return;
+      }
 
 
       for (int j = 0; j < 5; ++j)
