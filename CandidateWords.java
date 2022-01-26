@@ -36,6 +36,22 @@ public class CandidateWords
     char[] requirement = {'*','*','*','*','*'};
     StringBuilder requiredLetters = new StringBuilder();
 
+    //misplaced letters
+    char[] misLetter = new char[21];
+    for (int i = 0; i < 21; ++i)
+    {
+      misLetter[i] = ' ';
+    }
+    int[][] position  = new int [21][5];
+    for (int i = 0; i < 21; ++i)
+    {
+      for (int j = 0; j < 5; ++j)
+      {
+        position[i][j] = 0;
+      }
+    }
+
+
     for (int a = 0; a < 6; ++a)
     {
       Scanner sc = new Scanner(System.in);
@@ -45,10 +61,11 @@ public class CandidateWords
       String vals = sc.nextLine();
       if (vals.equals("ggggg"))
       {
-        System.out.printf("solved in %d rounds!\n");
+        System.out.printf("solved in %d rounds!\n", a+1);
         return;
       }
 
+      int y = 0;
 
       for (int j = 0; j < 5; ++j)
       {
@@ -59,6 +76,9 @@ public class CandidateWords
         if (vals.charAt(j)=='y')
         {
           requiredLetters.append(word.charAt(j));
+          misLetter[y] = word.charAt(j);
+          position[y][j] = -1;
+          y++;
         }
         if (vals.charAt(j)=='b')
         {
@@ -85,6 +105,20 @@ public class CandidateWords
           {
             words.remove(j);
             j--;
+          }
+          for (int x = 0; x < 21; ++x)
+          {
+            for (int w = 0; w < 5; ++w)
+            {
+              if (misLetter[x]!=' ')
+              {
+                if (words.get(j).charAt(w)==misLetter[x]&&position[x][w]==-1)
+                {
+                  words.remove(j);
+                  j--;
+                }
+              }
+            }
           }
         }
       }
