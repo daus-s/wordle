@@ -1,9 +1,7 @@
-import java.util.Arrays;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class CandidateWords
@@ -13,7 +11,7 @@ public class CandidateWords
     ArrayList<String> words = new ArrayList<String>();
     try
     {
-      BufferedReader bf = new BufferedReader(new FileReader("answers.txt"));
+      BufferedReader bf = new BufferedReader(new FileReader("sgb-words.txt"));
       String line = bf.readLine();
       while (line != null)
       {
@@ -54,6 +52,7 @@ public class CandidateWords
 
     for (int a = 0; a < 6; ++a)
     {
+      boolean removed = false;
       Scanner sc = new Scanner(System.in);
       System.out.print("enter word: ");
       String word = sc.nextLine();
@@ -92,20 +91,29 @@ public class CandidateWords
         {
           if (words.get(j).contains("" + disallowedLetters.charAt(i)))
           {
-            words.remove(j);
+            System.out.println("removed: " + words.remove(j));
             j--;
           }
         }
       }
+      //the word doesn't have a needed letter (GREEN CONDITION)
       for (int i = 0; i < requiredLetters.length(); ++i)
       {
         for (int j = 0; j < words.size(); ++j)
         {
           if (!words.get(j).contains("" + requiredLetters.charAt(i)))
           {
-            words.remove(j);
+            System.out.println("removed: " + words.remove(j));
             j--;
           }
+        }
+      }
+
+      //meets YELLOW condition
+      for (int i = 0; i < requiredLetters.length(); ++i)
+      {
+        for (int j = 0; j < words.size(); ++j)
+        {
           for (int x = 0; x < 21; ++x)
           {
             for (int w = 0; w < 5; ++w)
@@ -114,11 +122,21 @@ public class CandidateWords
               {
                 if (words.get(j).charAt(w)==misLetter[x]&&position[x][w]==-1)
                 {
-                  words.remove(j);
-                  j--;
+                  removed = true;
+                  System.out.println("removed: " + words.remove(j));
+                  break;
                 }
               }
             }
+            if (removed)
+            {
+              break;
+            }
+          }
+          if (removed)
+          {
+            removed = false;
+            break;
           }
         }
       }
@@ -128,9 +146,9 @@ public class CandidateWords
         {
           for (int j = 0; j < words.size(); ++j)
           {
-            if (words.get(j).charAt(i)!=requirement[i])
+            if (words.get(j).charAt(i) != requirement[i])
             {
-              words.remove(j);
+              System.out.println("removed: " + words.remove(j));
               --j;
             }
           }
