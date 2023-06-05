@@ -1,11 +1,13 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CandidateWords
 {
+  public static boolean DEBUG = false;
   private static ArrayList<String> generateCandidates()
   {
     ArrayList<String> words = new ArrayList<String>();
@@ -49,7 +51,7 @@ public class CandidateWords
       }
     }
 
-
+    int y = 0;
     for (int a = 0; a < 6; ++a)
     {
       boolean removed = false;
@@ -64,7 +66,7 @@ public class CandidateWords
         return;
       }
 
-      int y = 0;
+
 
       for (int j = 0; j < 5; ++j)
       {
@@ -85,13 +87,22 @@ public class CandidateWords
         }
       }
 
+
+      //TODO: Check for double letters here
+
+
+
       for (int i = 0; i < disallowedLetters.length(); ++i)
       {
         for (int j = 0; j < words.size(); ++j)
         {
           if (words.get(j).contains("" + disallowedLetters.charAt(i)))
           {
-            System.out.println("removed: " + words.remove(j));
+            if (DEBUG)
+            {
+              System.out.printf("removed %s because %s contains the disallowed(BLACK) letter %c\n", words.get(j), words.get(j), disallowedLetters.charAt(i));
+            }
+            words.remove(j);
             j--;
           }
         }
@@ -103,7 +114,11 @@ public class CandidateWords
         {
           if (!words.get(j).contains("" + requiredLetters.charAt(i)))
           {
-            System.out.println("removed: " + words.remove(j));
+            if (DEBUG)
+            {
+              System.out.printf("removed %s because %s does not contain the required(GREEN) letter %c\n", words.get(j), words.get(j), requiredLetters.charAt(i));
+            }
+            words.remove(j);
             j--;
           }
         }
@@ -123,7 +138,12 @@ public class CandidateWords
                 if (words.get(j).charAt(w)==misLetter[x]&&position[x][w]==-1)
                 {
                   removed = true;
-                  System.out.println("removed: " + words.remove(j));
+                  if (DEBUG)
+                  {
+                    System.out.printf("removed %s because %s has the letter %c but the letter is in the position %d (YELLOW) \n"
+                            , words.get(j), words.get(j), requiredLetters.charAt(i), w + 1);
+                  }
+                  words.remove(j);
                   break;
                 }
               }
@@ -140,6 +160,8 @@ public class CandidateWords
           }
         }
       }
+
+      //does not match required pattern
       for (int i = 0; i < 5; ++i)
       {
         if (requirement[i] != '*')
@@ -148,15 +170,85 @@ public class CandidateWords
           {
             if (words.get(j).charAt(i) != requirement[i])
             {
-              System.out.println("removed: " + words.remove(j));
+              if (DEBUG)
+              {
+                System.out.printf("removed %s because %s does not match the pattern %c%c%c%c%c\n", words.get(j), words.get(j), requirement[0], requirement[1], requirement[2], requirement[3], requirement[4]);
+              }
+              words.remove(j);
               --j;
             }
           }
         }
       }
       System.out.println(words);
+      analysis(words);
+
     }
   }
+
+  private static void analysis(ArrayList<String> words)
+  {
+    char[] alphabet = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+    double[] percentages = new double[26];
+    for (int l = 0; l < alphabet.length; ++l)
+    {
+      int count = 0;
+      for (String word : words)
+      {
+        if (word.contains("" + alphabet[l]))
+        {
+          count++;
+        }
+      }
+      percentages[l] = ((double)count)/((double)words.size());
+    }
+    double[] scores = new double[words.size()];
+    //now find the word with the highest percentage score
+    for (int i = 0; i < words.size(); i++)
+    {
+      double s = 0;
+      for (int j = 0; j < 5; j++)
+      {
+        s += percentages[((int)words.get(i).charAt(j) - 97)];
+      }
+      scores[i] = s;
+      //print stats
+      if (DEBUG)
+      {
+        System.out.printf("%s : %f\n", words.get(i), scores[i]);
+      }
+    }
+    double maxScore = -1;
+    int maxIndex = -1;
+    for (int i = 0; i < words.size(); i++)
+    {
+      if (scores[i] >= maxScore && !doubleLetters(words.get(i)))
+      {
+        maxScore = scores[i];
+        maxIndex = i;
+      }
+    }
+    if (maxIndex!=-1)
+      System.out.printf("the best word choice is %s\n", words.get(maxIndex));
+    else
+      System.out.printf("the best word choice is %s\n", words.get(0));
+  }
+
+  private static boolean doubleLetters(String s)
+  {
+    for (int i = 0; i < 5; i++)
+    {
+      for (int j = i+1; j < 5; j++)
+      {
+        if (s.charAt(j) == s.charAt(i))
+        {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
   public static void main(String[] args)
   {
     ArrayList<String> words = generateCandidates();
