@@ -38,13 +38,13 @@ public class CandidateWords
     StringBuilder requiredLetters = new StringBuilder();
 
     //misplaced letters
-    char[] misLetter = new char[21];
-    for (int i = 0; i < 21; ++i)
+    char[] misplacedLetters = new char[26];
+    for (int i = 0; i < 26; ++i)
     {
-      misLetter[i] = ' ';
+      misplacedLetters[i] = ' ';
     }
-    int[][] position  = new int [21][5];
-    for (int i = 0; i < 21; ++i)
+    int[][] position  = new int [26][5];
+    for (int i = 0; i < 26; ++i)
     {
       for (int j = 0; j < 5; ++j)
       {
@@ -55,20 +55,19 @@ public class CandidateWords
     int y = 0;
     for (int a = 0; a < 6; ++a)
     {
-      boolean removed = false;
       Scanner sc = new Scanner(System.in);
       System.out.print("enter word: ");
       String word = sc.nextLine();
       System.out.print("values gyb: ");
       String vals = sc.nextLine();
+
       if (vals.equals("ggggg"))
       {
         System.out.printf("solved in %d rounds!\n", a+1);
         return;
       }
 
-
-      //TODO: Check for double letters here
+      //check for double letters https://github.com/daus-s/wordle/issues/1
       for (int i = 0; i < 5; i++)
       {
         for (int j = i+1; j < 5; j++) {
@@ -102,8 +101,11 @@ public class CandidateWords
         }
         if (vals.charAt(j)=='y')
         {
-          requiredLetters.append(word.charAt(j));
-          misLetter[y] = word.charAt(j);
+          if (!requiredLetters.toString().contains(String.valueOf(word.charAt(j))))
+          {
+            requiredLetters.append(word.charAt(j));
+          }
+          misplacedLetters[y] = word.charAt(j);
           position[y][j] = -1;
           y++;
         }
@@ -117,9 +119,10 @@ public class CandidateWords
 
 
 
-      for (int i = 0; i < disallowedLetters.length(); ++i)
+
+      for (int j = 0; j < words.size(); ++j)
       {
-        for (int j = 0; j < words.size(); ++j)
+        for (int i = 0; i < disallowedLetters.length(); ++i)
         {
           if (words.get(j).contains("" + disallowedLetters.charAt(i)))
           {
@@ -129,9 +132,12 @@ public class CandidateWords
             }
             words.remove(j);
             j--;
+            break;
           }
         }
       }
+
+
       //the word doesn't have a needed letter (GREEN CONDITION)
       for (int i = 0; i < requiredLetters.length(); ++i)
       {
@@ -148,6 +154,7 @@ public class CandidateWords
           }
         }
       }
+      boolean removed = false;
 
       //meets YELLOW condition
       for (int i = 0; i < requiredLetters.length(); ++i)
@@ -158,10 +165,11 @@ public class CandidateWords
           {
             for (int w = 0; w < 5; ++w)
             {
-              if (misLetter[x]!=' ')
+              if (misplacedLetters[x]!=' ')
               {
-                if (words.get(j).charAt(w)==misLetter[x]&&position[x][w]==-1)
+                if (words.get(j).charAt(w)==misplacedLetters[x] && position[x][w]==-1)
                 {
+                  String check = words.get(j);
                   removed = true;
                   if (DEBUG)
                   {
@@ -181,12 +189,12 @@ public class CandidateWords
           if (removed)
           {
             removed = false;
-            break;
+            j--;
           }
         }
       }
 
-      //does not match required pattern
+      //does not match required pattern (GREEN) condition
       for (int i = 0; i < 5; ++i)
       {
         if (requirement[i] != '*')
@@ -213,6 +221,11 @@ public class CandidateWords
 
   private static void analysis(ArrayList<String> words)
   {
+    if (words.size()==0)
+    {
+      System.out.println("ERROR: ALL WORDS REMOVED\nNO POSSIBLE CANDIDATE ANSWERS REMAIN");
+      return;
+    }
     char[] alphabet = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
     double[] percentages = new double[26];
     for (int l = 0; l < alphabet.length; ++l)
