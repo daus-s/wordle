@@ -32,6 +32,7 @@ public class CandidateWords
 
   private static void getInput(ArrayList<String> words)
   {
+    analysis(words);
     StringBuilder disallowedLetters = new StringBuilder();
     char[] requirement = {'*','*','*','*','*'};
     StringBuilder requiredLetters = new StringBuilder();
@@ -67,6 +68,31 @@ public class CandidateWords
       }
 
 
+      //TODO: Check for double letters here
+      for (int i = 0; i < 5; i++)
+      {
+        for (int j = i+1; j < 5; j++) {
+          if (word.charAt(i)==word.charAt(j))
+          {
+            if (vals.charAt(i)=='y' && vals.charAt(j)=='b')
+            {
+              vals = vals.substring(0, j) + 'y' + vals.substring(j + 1);
+            }
+            if (vals.charAt(i)=='b' && vals.charAt(j)=='y')
+            {
+              vals = vals.substring(0, i) + 'y' + vals.substring(i + 1);
+            }
+            if (vals.charAt(i)=='g' && vals.charAt(j)=='b')
+            {
+              vals = vals.substring(0, j) + 'y' + vals.substring(j + 1);
+            }
+            if (vals.charAt(i)=='b' && vals.charAt(j)=='g')
+            {
+              vals = vals.substring(0, i) + 'y' + vals.substring(i + 1);
+            }
+          }
+        }
+      }
 
       for (int j = 0; j < 5; ++j)
       {
@@ -88,7 +114,6 @@ public class CandidateWords
       }
 
 
-      //TODO: Check for double letters here
 
 
 
