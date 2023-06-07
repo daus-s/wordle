@@ -1,5 +1,5 @@
 @ECHO OFF
 ECHO WORDLE-BOT
-javac CandidateWords.java
-java CandidateWords 0
+cd C:\Users\davis\Documents\wordle
+java -jar Wordle.jar
 PAUSE
