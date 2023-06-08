@@ -35,10 +35,10 @@ Download [wordle.zip](https://github.com/daus-s/wordle/raw/main/wordle.zip)
     - Black -> b, this letter is not present in the word
 - For this example the input for the 1st round should be 
 - 
-`
-enter word: cover\n
+```
+enter word: cover
 values gyb: gbbby
-`
+```
 
 - Continue these steps until the wordle is solved. 
 
