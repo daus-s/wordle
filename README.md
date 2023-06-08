@@ -24,7 +24,7 @@
 - Run the wordlebot (wordle.sh for macOS/Linux, wordle.bat for Windows)
 - Enter the first word into both press enter for each
 
-![Wordle after 1 round](http://url/to/img.png)
+![Wordle after 1 round](https://github.com/daus-s/wordle/blob/d796f0d50b0a33256b8540f077aae00cf7d55bdd/round1.PNG)
 **Fig 1.** Wordles output for 6/8/2023 using the word "cover" 
 
 - Translate the colors of the wordle output to their respective characters
