@@ -34,10 +34,12 @@ Download [wordle.zip](https://github.com/daus-s/wordle/raw/main/wordle.zip)
     - Yellow -> y, this means the letter is present in the word but not in that spot
     - Black -> b, this letter is not present in the word
 - For this example the input for the 1st round should be 
+- 
 `
-enter word: cover
+enter word: cover\n
 values gyb: gbbby
 `
+
 - Continue these steps until the wordle is solved. 
 
 [Tutorial](https://www.twitch.tv/videos/1841246263)
