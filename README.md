@@ -9,7 +9,8 @@
 
 #### Install
 
-`git clone https://github.com/daus-s/wordle.git`
+Download [wordle.zip](https://github.com/daus-s/wordle/blob/9b84d70db36743ef3eceda56ce308385358f3cda/wordle.zip)
+
 
 ##### Linux/Unix
 
