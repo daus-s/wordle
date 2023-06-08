@@ -40,6 +40,7 @@ values gyb: gbbby
 - Continue these steps until the wordle is solved. 
 
 [Tutorial](https://www.twitch.tv/videos/1841246263)
+
 \*contains spoilers for wordle 6/8/2023
 ###### Sources
 https://github.com/charlesreid1/five-letter-words/blob/master/sgb-words.txt - list of 5 letter words used to filter words
