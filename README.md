@@ -12,7 +12,8 @@
 Download [wordle.zip](https://github.com/daus-s/wordle/raw/main/wordle.zip)
 
 
-##### Linux/Unix
+##### macOS
+
 
 
 
