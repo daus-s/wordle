@@ -7,9 +7,8 @@ chmod +x wordle
 
 #in bash
 
-path="
-${currentDirectory}/wordle"
-echo "#wordle bot command path"
-echo $path >> `/.bash_profile 
+path="export PATH=\"\$PATH:${currentDirectory}/wordle"\"
+echo "" >> ~/.bash_profile
+echo "#wordle bot command path" >> ~/.bash_profile
+echo $path >> ~/.bash_profile 
 
-read 
