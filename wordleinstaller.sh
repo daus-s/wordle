@@ -23,13 +23,15 @@ fi
 source ~/.bash_profile
 
 # set up the wordle executable
-echo "cd ${path}\n
-      echo WORDLE\n
-      java -jar Wordle.jar\nSTATUS=\$?\n
-      if [ \$STATUS -ne 0 ]; then\n
-      echo \"error occured, compiling and rebuilding Wordle.jar\"\n
-      javac Wordle.javajar cfe Wordle.jar Wordle Wordle.class\n
-      java -jar Wordle.jar\n
+echo "cd ${currentDirectory}
+      echo WORDLE
+      java -jar Wordle.jar
+      STATUS=\$?
+      if [ \$STATUS -ne 0 ]; then
+        echo \"error occured, compiling and rebuilding Wordle.jar\"
+        javac Wordle.java
+        jar cfe Wordle.jar Wordle Wordle.class
+        java -jar Wordle.jar
       fi" >| wordle
 
 
