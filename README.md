@@ -15,7 +15,7 @@
 2. Extract the zip file into the desired location
 3. Open a terminal window in this folder and run
     - `chmod +x wordleinstaller.sh`
-    - `./wordleinstaller.sh
+    - `./wordleinstaller.sh`
 4. Type `wordle` into the terminal anywhere and play. 
 
 
