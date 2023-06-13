@@ -6,7 +6,9 @@
 
 
 ### Instructions
-
+#### System Requirements 
+- Java runtime 
+- zsh or bash on macOS
 #### Install
 
 ##### macOS
