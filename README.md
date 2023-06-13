@@ -16,7 +16,7 @@
 3. Open a terminal window in this folder and run
     - `chmod +x wordleinstaller.sh`
     - `./wordleinstaller.sh`
-4. Type `wordle` into the terminal anywhere and play. 
+4. Restart the Terminal and type `wordle` into the terminal anywhere and play. OR run `./wordle` immediately.
 
 
 ##### Windows
