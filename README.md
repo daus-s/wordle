@@ -9,15 +9,21 @@
 
 #### Install
 
-Download [wordle.zip](https://github.com/daus-s/wordle/raw/main/wordle.zip)
-
-
 ##### macOS
 
-
+1. Download the macOS zip file [wordlebot_mac.zip](https://github.com/daus-s/wordle/raw/main/wordlebot_mac.zip)
+2. Extract the zip file into the desired location
+3. Open a terminal window in this folder and run
+    - `chmod +x wordleinstaller.sh`
+    - `./wordleinstaller.sh
+4. Type `wordle` into the terminal anywhere and play. 
 
 
 ##### Windows
+
+1. Download the windows zip file [wordlebot_win.zip](https://github.com/daus-s/wordle/raw/main/wordlebot_win.zip)
+2. Extract the zip file into the desired location
+3. Go to this directory and run the command `wordle`
 
 
 
