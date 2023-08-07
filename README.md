@@ -7,7 +7,10 @@
 This codebase is for a program used to help (some say cheat) play the popular word game 'wordle.' The program is a CLI that takes the user's chosen word, and the following respective letter values. These are the yellow, green, and black values that Wordle returns when a guess is made. The code then eliminates words that do not match the requirements based on the output from Wordle. 
 Additionally, the code also provides the best guess based on the frequency of letters remaining in the pool of words. 
 
+
 All-time record as of 8/7/2023.
+
+
 0 losses, a lot of wins
 
 ### Instructions
