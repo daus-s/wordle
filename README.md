@@ -11,7 +11,7 @@ Additionally, the code also provides the best guess based on the frequency of le
 All-time record as of 8/7/2023.
 
 
-59W - 0L
+83W - 0L
 
 ### Instructions
 #### System Requirements 
