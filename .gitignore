@@ -1,0 +1,17 @@
+.idea/
+out/
+src.c/
+wordle/
+CandidateWords.class
+CandidateWords.java
+Fib.class
+Fib.java
+Wordle.class
+Wordle.java
+__init__.py
+attributions.txt
+filter.py
+solutions.txt
+src/
+wordle.iml
+wordlebot_win/
