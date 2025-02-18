@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Wordle
+class Wordle
 {
     public static boolean DEBUG = false;
     private static ArrayList<String> generateCandidates()
@@ -12,7 +12,7 @@ public class Wordle
         ArrayList<String> words = new ArrayList<String>();
         try
         {
-            BufferedReader bf = new BufferedReader(new FileReader("sgb-words.txt"));
+            BufferedReader bf = new BufferedReader(new FileReader("solutions.txt"));
             String line = bf.readLine();
             while (line != null)
             {
