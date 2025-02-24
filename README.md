@@ -8,10 +8,12 @@ This codebase is for a program used to help (some say cheat) play the popular wo
 Additionally, the code also provides the best guess based on the frequency of letters remaining in the pool of words. 
 
 
-All-time record as of 8/7/2023.
+All-time record as of 2/23/2025.
 
 
-83W - 0L
+270-0\*
+
+\**only 1 loss when I chose against the bot. The bot's path solved it correctly in its game.*
 
 ### Instructions
 #### System Requirements 
@@ -47,9 +49,9 @@ All-time record as of 8/7/2023.
 **Fig 1.** Wordles output for 6/8/2023 using the word "cover" 
 
 - Translate the colors of the wordle output to their respective characters
-    - Green -> g,  this means the letter chosen is in the correct spot
-    - Yellow -> y, this means the letter is present in the word but not in that spot
-    - Black -> b, this letter is not present in the word
+    - Green -> `g`,  this means the letter chosen is in the correct spot
+    - Yellow -> `y`, this means the letter is present in the word but not in that spot
+    - Black -> `b`, this letter is not present in the word
 - For this example the input for the 1st round should be 
 - 
 ```
